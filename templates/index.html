@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Student Management System</h1>
+      <p>Manage student records quickly and easily</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="stats">
+      <div class="stat-card"><span>Total Students</span><strong id="total">0</strong></div>
+      <div class="stat-card"><span>Average Marks</span><strong id="average">0</strong></div>
+      <div class="stat-card"><span>Highest Marks</span><strong id="highest">0</strong></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2 id="formTitle">Add Student</h2>
+        <button class="secondary hidden" id="cancelEdit">Cancel Edit</button>
+      </div>
+
+      <form id="studentForm">
+        <input type="hidden" id="studentId">
+        <div class="form-grid">
+          <label>Name
+            <input id="name" required placeholder="Enter student name">
+          </label>
+          <label>Roll No
+            <input id="roll_no" required placeholder="e.g. 101">
+          </label>
+          <label>Class
+            <input id="class_name" required placeholder="e.g. FY B.Tech">
+          </label>
+          <label>Marks
+            <input id="marks" type="number" min="0" max="100" step="0.01" required placeholder="0 - 100">
+          </label>
+          <label>Contact
+            <input id="contact" inputmode="numeric" maxlength="10" required placeholder="10-digit number">
+          </label>
+        </div>
+        <button class="primary" type="submit" id="submitBtn">Add Student</button>
+      </form>
+      <div id="message"></div>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <h2>Student Records</h2>
+        <input id="search" placeholder="Search by name, roll no or class...">
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Roll No</th>
+              <th>Class</th>
+              <th>Marks</th>
+              <th>Contact</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentTable"></tbody>
+        </table>
+      </div>
+      <p id="empty" class="empty">No student records found.</p>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
